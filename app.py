@@ -3,8 +3,8 @@ from binance import Client
 from telebot import TeleBot, types
 from flask import Flask, request
 
-TOKEN = os.environ.get('API_TOKEN', None)
-APP_NAME = os.environ.get('APP_NAME', None)
+TOKEN = "5850040017:AAGJHrTtQ7-vSO3OxGvZqBuEpUEV_6xcmps"
+
 
 bot = TeleBot(TOKEN)
 server = Flask(__name__)
