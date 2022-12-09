@@ -72,25 +72,4 @@ def callbackQueryHandler(call : types.CallbackQuery):
         parse_mode='markdown'
     )
 
-@server.route('/' + TOKEN, methods=['POST'])
-def getMessage():
-    json_string = request.get_data().decode('utf-8')
-    update = types.Update.de_json(json_string)
-    bot.process_new_updates([update])
-    return "!", 200
-
-
-@server.route("/setWebhook")
-def webhook():
-    if not APP_NAME or not TOKEN:
-        return 'Setup TOKEN & URL environment variable from heroku dashboard.'
-    bot.remove_webhook()
-    bot.set_webhook(url= f'https://{APP_NAME}.herokuapp.com/{TOKEN}')
-    return "Webhook Done!", 200
-
-@server.route("/")
-def home():
-    return "<h1>Server Running!</h1>", 200
-
-if __name__ == "__main__":
-    server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
+bot.infinity_polling()
